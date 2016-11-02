@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Auto Complete</title>
+</head>
+
+<body ng-app = "autoCompleteApp">
+<div ng-controller = "autoCompleteController as $ctrl " > 
+  <div ng-if = "$ctrl.errmsg" > Error :  {{$ctrl.errmsg}}</div>
+    
+    <div class="form-group" ng-if = "!$ctrl.errmsg">
+        <input type="text" ng-model="$ctrl.searchTerm" name="searchTerm" placeholder="Enter Your Search Term"  ng-keydown="$ctrl.selected=false"   >
+     <ul ng-hide="!$ctrl.searchTerm.length  || $ctrl.selected">
+      <li ng-repeat = "item in $ctrl.list | filter:$ctrl.searchTerm" > <a ng-click = "$ctrl.selectItem(item.name)" >{{ $index }} {{item.name}} </a> </li>
+       </ul>
+     </div>
+      
+{{$ctrl.searchTerm}}
+</div>
+      
+    <script src="angular.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
